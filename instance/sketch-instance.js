@@ -10,6 +10,7 @@ let abmMain = p5i => {
   var fr = 60;
   var wEnv = 600; //1920
   var hEnv = 600; //1080
+  p5i.ticks = 3000;
 
   // agents
   var numOfAgents = 1;
@@ -31,6 +32,7 @@ let abmMain = p5i => {
     for(var i = 0; i < p5i.agents.length; i++){p5i.agents[i].show();}
     for(var i = 0; i < p5i.agents.length; i++){p5i.agents[i].update();}
     p5i.drawLabels();
+    p5i.isComplete();
   }
 
 
@@ -46,6 +48,7 @@ let abmMain = p5i => {
     p5i.push();
     p5i.stroke(0);
     p5i.text("Model",15,35);
+    p5i.text(p5i.frameCount + "/" + p5i.ticks,15,55);
     p5i.pop();
   }
 
@@ -55,6 +58,8 @@ let abmMain = p5i => {
     pause?p5i.noLoop():p5i.loop();
   }
 
+
+  p5i.isComplete = function(){if(p5i.frameCount>=p5i.ticks)noLoop();}
 }
 
 
